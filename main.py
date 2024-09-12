@@ -5,14 +5,8 @@ def main():
     # Instantiate the PokemonService
     pokemon_service = PokemonService()
 
-    # Example pokemon_id
-    pokemon_id = "7"
-
-    for i in range(1,100):
-        pokemon = pokemon_service.get_pokemon_by_id(str(i))
-
-        # Print the result
-        print(pokemon)
+    for i in range(130,140):
+        pokemon_service.send_pokemon_to_topic_by_id(str(i))
 
 if __name__ == "__main__":
     main()
