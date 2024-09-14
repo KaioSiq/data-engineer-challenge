@@ -18,8 +18,3 @@ class PokemonService:
     def send_pokemon_to_topic_by_id(self, id_):
         pokemon = self.poke_api_client.get_pokemon_by_id(id_)
         self.kafka_producer.send_message(json.dumps(pokemon.model_dump()))
-
-    # def send_pokemon_to_topic_by_id(self, id_):
-    #     pokemon = self.poke_api_client.get_pokemon_by_id(id_)
-    #     pokemon_data = json.dumps(pokemon.__dict__)  # Serializa o objeto para JSON
-    #     self.kafka_producer.send_message(pokemon_data)
