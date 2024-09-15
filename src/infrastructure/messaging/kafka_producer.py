@@ -11,7 +11,7 @@ producer = Producer(conf)
 # Função de callback para lidar com a confirmação de entrega
 def delivery_report(err, msg):
     if err is not None:
-        print(f'Mensagem enviada para o tópico {msg.topic()}')
+        print(f'Message sent to topic {msg.topic()}')
 
 class KafkaProducerImpl:
 
