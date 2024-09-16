@@ -1,6 +1,6 @@
 import requests
 
-from src.entities.pokemon import Pokemon
+from entities.pokemon import Pokemon
 
 
 class PokeApiClientImpl:

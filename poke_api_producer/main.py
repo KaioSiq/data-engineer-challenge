@@ -1,9 +1,9 @@
 import random
 import time
 
-from src.application.controller import PokemonController
-from src.infrastructure.messaging.kafka_producer import KafkaProducerImpl
-from src.infrastructure.poke_api.poke_api_client import PokeApiClientImpl
+from application.controller import PokemonController
+from infrastructure.messaging.kafka_producer import KafkaProducerImpl
+from infrastructure.poke_api.poke_api_client import PokeApiClientImpl
 
 
 def main():
