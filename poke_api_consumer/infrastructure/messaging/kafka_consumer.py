@@ -4,32 +4,31 @@ import os
 from confluent_kafka import Consumer, KafkaError, KafkaException
 from entities.pokemon import Pokemon
 
-KAFKA_BROKER = os.getenv('KAFKA_BROKER', 'localhost:9092')
+KAFKA_BROKER = os.getenv("KAFKA_BROKER", "localhost:9092")
 
 # Configuração do produtor Kafka
 consumer_conf = {
-    'bootstrap.servers':KAFKA_BROKER,  # Endereço do broker Kafka
-    'group.id': 'pokemon-consumer-group',   # Grupo do consumidor
-    'auto.offset.reset': 'earliest'         # Começar a consumir desde o início
+    "bootstrap.servers": KAFKA_BROKER,  # Endereço do broker Kafka
+    "group.id": "pokemon-consumer-group",  # Grupo do consumidor
+    "auto.offset.reset": "earliest",  # Começar a consumir desde o início
 }
 
 # Criar o consumidor
 consumer = Consumer(consumer_conf)
 
+
 # Função de callback para lidar com a confirmação de entrega
 def delivery_report(err, msg):
     if err is not None:
-        print(f'Mensagem enviada para o tópico {msg.topic()}')
+        print(f"Mensagem enviada para o tópico {msg.topic()}")
+
 
 class KafkaConsumer:
-
     def __init__(self, topic_name):
         self.topic_name = topic_name
         consumer.subscribe([self.topic_name])
 
-
     def consume_message(self, topic_name):
-
         try:
             print(f"Consumindo mensagens do tópico '{topic_name}'...")
             while True:
@@ -41,7 +40,7 @@ class KafkaConsumer:
 
                     if isinstance(message_value, bytes):
                         # Decodifica bytes para string
-                        message_value = message_value.decode('utf-8')
+                        message_value = message_value.decode("utf-8")
 
                     # Converter a string JSON para dicionário
                     message_dict = json.loads(message_value)
@@ -62,7 +61,6 @@ class KafkaConsumer:
                 # else:
                 #     # Imprimir a mensagem consumida
                 #     print(f"Mensagem recebida: {message.value().decode('utf-8')}")
-                    
 
         except KeyboardInterrupt:
             print("Consumo interrompido.")
@@ -70,5 +68,3 @@ class KafkaConsumer:
         # finally:
         #     # Fechar o consumidor
         #     consumer.close()
-
-

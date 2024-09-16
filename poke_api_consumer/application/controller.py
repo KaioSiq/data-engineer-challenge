@@ -7,19 +7,19 @@ class Controller:
         pokemon = self.kafka_consumer.consume_message()
         print(pokemon)
         self.type_counter(pokemon)
-    
+
     def consume_pokemon_from_topic(self):
         while True:
             try:
                 self.process_message()
             except Exception as e:
                 print(f"Error processing Pokémon: {e}")
-    
+
     def type_counter(self, pokemon):
         data = self.file_handler.read_file()
         type_counts = data["types"]
 
-        pokemon_types = [ptype.type.name for ptype in pokemon.types] # [agua, fofo]
+        pokemon_types = [ptype.type.name for ptype in pokemon.types]  # [agua, fofo]
 
         for ptype in pokemon_types:
             if ptype in type_counts:

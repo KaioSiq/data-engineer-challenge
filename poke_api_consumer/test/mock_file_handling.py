@@ -6,9 +6,4 @@ class FileHandlerMock:
         self.output_content = data
 
     def read_file(self):
-        return {
-            "types": {
-                "ghost": 13,
-                "poison": 13
-            }
-        }
+        return {"types": {"ghost": 13, "poison": 13}}

@@ -6,4 +6,3 @@ class MockKafkaProducer:
 
     def send_message(self, message):
         self.messages.append(message)
-        
