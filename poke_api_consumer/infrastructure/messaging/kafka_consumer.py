@@ -1,10 +1,14 @@
 import json
-from confluent_kafka import Consumer, KafkaException, KafkaError
+import os
+
+from confluent_kafka import Consumer, KafkaError, KafkaException
 from entities.pokemon import Pokemon
+
+KAFKA_BROKER = os.getenv('KAFKA_BROKER', 'localhost:9092')
 
 # Configuração do produtor Kafka
 consumer_conf = {
-    'bootstrap.servers': 'localhost:9092',  # Endereço do broker Kafka
+    'bootstrap.servers':KAFKA_BROKER,  # Endereço do broker Kafka
     'group.id': 'pokemon-consumer-group',   # Grupo do consumidor
     'auto.offset.reset': 'earliest'         # Começar a consumir desde o início
 }
@@ -17,10 +21,10 @@ def delivery_report(err, msg):
     if err is not None:
         print(f'Mensagem enviada para o tópico {msg.topic()}')
 
-class KafkaConsumerImpl:
+class KafkaConsumer:
 
-    def __init__(self):
-        self.topic_name = "poke-topic"
+    def __init__(self, topic_name):
+        self.topic_name = topic_name
         consumer.subscribe([self.topic_name])
 
 

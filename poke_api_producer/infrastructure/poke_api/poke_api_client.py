@@ -1,9 +1,8 @@
 import requests
-
 from entities.pokemon import Pokemon
 
 
-class PokeApiClientImpl:
+class PokeApiClient:
     def __init__(self):
          self.poke_api_url = "https://pokeapi.co/api/v2/pokemon/"
     
