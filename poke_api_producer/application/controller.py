@@ -21,4 +21,4 @@ class Controller:
     def run_pokemon_fetcher(self):
         while True:
             self.fetch_and_send_pokemon()
-            time.sleep(2)
+            time.sleep(MINUTE)

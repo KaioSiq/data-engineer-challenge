@@ -4,8 +4,7 @@ class Controller:
         self.kafka_consumer = kafka_consumer
 
     def process_message(self):
-        pokemon = self.kafka_consumer.consume_message()
-        print(pokemon)
+        pokemon = self.kafka_consumer.consume_message("poke-topic")  # check
         self.type_counter(pokemon)
 
     def consume_pokemon_from_topic(self):
@@ -17,7 +16,12 @@ class Controller:
 
     def type_counter(self, pokemon):
         data = self.file_handler.read_file()
-        type_counts = data["types"]
+        type_counts = data.get("types", {})
+
+        # Check if 'types' attribute exists and is a list
+        if not hasattr(pokemon, "types") or not isinstance(pokemon.types, list):
+            print(f"Error: Invalid Pokémon object structure: {pokemon}", flush=True)
+            return
 
         pokemon_types = [ptype.type.name for ptype in pokemon.types]  # [agua, fofo]
 
@@ -31,4 +35,4 @@ class Controller:
 
         self.file_handler.update_file(updated_data)
 
-        print(f"Updated type counts: {type_counts}")
+        print(f"Updated type counts: {type_counts}", flush=True)
