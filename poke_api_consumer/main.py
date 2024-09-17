@@ -11,8 +11,6 @@ def main():
     )
 
     pokemon_service.consume_pokemon_from_topic()
-    # pokemon = pokemon_service.consume_pokemon_from_topic()
-    # pokemon_service.type_counter(pokemon)
 
 
 if __name__ == "__main__":

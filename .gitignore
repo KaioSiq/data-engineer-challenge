@@ -6,6 +6,7 @@ __pycache__/
 to_do.md
 SOLUTION.md
 poke_api_consumer/type-count.json
+type-count.json
 
 # C extensions
 *.so

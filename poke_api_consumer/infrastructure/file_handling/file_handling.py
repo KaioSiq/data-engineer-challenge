@@ -7,11 +7,18 @@ class FileHandler:
         self.file_path = file_path
 
     def update_file(self, data):
-        with open(self.file_path, "w") as file:
-            json.dump(data, file, indent=4)
+        try:
+            with open(self.file_path, "w") as file:
+                json.dump(data, file, indent=4)
+        except (IOError, OSError) as e:
+            print(f"Error writing to file {self.file_path}: {e}")
 
     def read_file(self):
-        if os.path.exists(self.file_path):
-            with open(self.file_path, "r") as file:
-                return json.load(file)
-        return {}
+        try:
+            if os.path.exists(self.file_path):
+                with open(self.file_path, "r") as file:
+                    return json.load(file)
+            return {}
+        except (IOError, OSError) as e:
+            print(f"Error reading from file {self.file_path}: {e}")
+            return {}

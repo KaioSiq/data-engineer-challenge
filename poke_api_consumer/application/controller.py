@@ -17,13 +17,11 @@ class Controller:
     def type_counter(self, pokemon):
         data = self.file_handler.read_file()
         type_counts = data.get("types", {})
-
-        # Check if 'types' attribute exists and is a list
         if not hasattr(pokemon, "types") or not isinstance(pokemon.types, list):
             print(f"Error: Invalid Pokémon object structure: {pokemon}", flush=True)
             return
 
-        pokemon_types = [ptype.type.name for ptype in pokemon.types]  # [agua, fofo]
+        pokemon_types = [ptype.type.name for ptype in pokemon.types]
 
         for ptype in pokemon_types:
             if ptype in type_counts:
