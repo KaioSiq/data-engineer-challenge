@@ -5,7 +5,7 @@ from .mock_kafka_consumer import KafkaConsumerMock
 
 def test_controller():
     controller = Controller(
-        kafka_consumer=KafkaConsumerMock(), file_handler=FileHandlerMock("test.json")
+        kafka_consumer=KafkaConsumerMock("poke=topic"), file_handler=FileHandlerMock("test.json")
     )
 
     controller.process_message()
