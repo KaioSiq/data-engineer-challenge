@@ -4,7 +4,7 @@ class Controller:
         self.kafka_consumer = kafka_consumer
 
     def process_message(self):
-        pokemon = self.kafka_consumer.consume_message("poke-topic")  # check
+        pokemon = self.kafka_consumer.consume_message()  # check
         self.type_counter(pokemon)
 
     def consume_pokemon_from_topic(self):
