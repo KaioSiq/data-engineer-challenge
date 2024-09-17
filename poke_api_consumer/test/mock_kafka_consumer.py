@@ -2,8 +2,8 @@ from ..entities.pokemon import Pokemon
 
 
 class KafkaConsumerMock:
-    def __init__(self):
-        self.topic_name = "poke-topic"
+    def __init__(self, topic_name):
+        self.topic_name = topic_name
 
     def consume_message(self):
         message_dict = {
