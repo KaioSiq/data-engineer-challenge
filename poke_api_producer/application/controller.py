@@ -19,6 +19,6 @@ class Controller:
         self.kafka_producer.send_message(json.dumps(pokemon.model_dump()))
 
     def run_pokemon_fetcher(self):
-        while True:
+        while True:  # keyboard interrupt
             self.fetch_and_send_pokemon()
             time.sleep(MINUTE)

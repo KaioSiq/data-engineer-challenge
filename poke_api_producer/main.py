@@ -1,6 +1,3 @@
-import random
-import time
-
 from application.controller import Controller
 from infrastructure.messaging.kafka_producer import KafkaProducer
 from infrastructure.poke_api.poke_api_client import PokeApiClient
