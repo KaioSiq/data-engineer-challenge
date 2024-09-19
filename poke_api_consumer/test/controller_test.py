@@ -16,6 +16,7 @@ def test_controller():
         "types": {"ghost": 13, "poison": 14, "water": 1}
     }
 
+
 def test_controller_broken_file_handler():
     controller = Controller(
         kafka_consumer=KafkaConsumerMock("poke=topic"),

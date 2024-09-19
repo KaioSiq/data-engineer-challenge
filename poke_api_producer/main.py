@@ -6,6 +6,7 @@ import os
 
 TOPIC_NAME = os.getenv("TOPIC_NAME", "poke-topic")
 
+
 def main():
     controller = Controller(
         poke_api_client=PokeApiClient(),

@@ -14,7 +14,6 @@ class Controller:
         while True:
             self.process_message()
 
-
     def type_counter(self, pokemon):
         data = self.file_handler.read_file()
         type_counts = data.get("types", {})

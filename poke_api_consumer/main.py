@@ -6,6 +6,7 @@ import os
 TOPIC_NAME = os.getenv("TOPIC_NAME", "poke-topic")
 OUTPUT_FILE_NAME = os.getenv("OUTPUT_FILE_NAME", "type-count.json")
 
+
 def main():
     # Instantiate the PokemonService
     pokemon_service = Controller(

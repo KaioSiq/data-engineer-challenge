@@ -1,4 +1,3 @@
-import pathlib
 import json
 from ..entities.pokemon import Pokemon
 

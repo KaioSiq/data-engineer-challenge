@@ -28,7 +28,6 @@ class KafkaConsumer:
         consumer.subscribe([self.topic_name])
 
     def consume_message(self):
-
         while True:
             message = consumer.poll(timeout=10.0)  # Timeout de 10 segundos
             if message is not None:
@@ -51,7 +50,6 @@ class KafkaConsumer:
                     raise KafkaException(message.error())
             else:
                 print(f"Mensagem recebida: {message.value().decode('utf-8')}")
-
 
     def close_consumer(self):
         consumer.close()

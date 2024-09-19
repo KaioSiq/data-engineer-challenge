@@ -7,8 +7,8 @@ class FileHandlerMock:
 
     def read_file(self):
         return {"types": {"ghost": 13, "poison": 13}}
-    
-    
+
+
 class BrokenFileHandlerMock:
     def __init__(self, file_path) -> None:
         self.file_path = file_path
