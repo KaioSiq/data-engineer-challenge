@@ -12,7 +12,7 @@ Este projeto visa desenvolver um pipeline que captura dados da [PokéApi](https:
 ## Desenho da Arquitetura
 
 
-<img src="arquitetura.png" width="1500"/>
+<img src="arquitetura" width="2000"/>
 
 
 ## Estrutura do Projeto
