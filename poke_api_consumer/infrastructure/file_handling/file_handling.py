@@ -10,8 +10,8 @@ class FileHandler:
         try:
             with open(self.file_path, "w") as file:
                 json.dump(data, file, indent=4)
-        except (IOError, OSError) as e:
-            print(f"Error writing to file {self.file_path}: {e}")
+        except Exception as e:
+           raise Exception(f"Error writing to file {self.file_path}: {e}")
 
     def read_file(self):
         try:

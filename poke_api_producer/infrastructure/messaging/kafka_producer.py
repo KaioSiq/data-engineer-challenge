@@ -16,10 +16,10 @@ def message_report(err, msg):
 
 
 class KafkaProducer:
-    def __init__(self, topic_name=str):
+    def __init__(self, topic_name: str):
         self.topic_name = topic_name
 
     def send_message(self, message):
-        producer.produce(self.topic_name, message, callback=message_report)
+        producer.produce(self.topic_name, message, callback=message_report) # checar documentacao
         print(f"Message sent: {message}\n Topic: {self.topic_name}")
         producer.flush()

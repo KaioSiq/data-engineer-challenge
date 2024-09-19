@@ -4,15 +4,16 @@ class Controller:
         self.kafka_consumer = kafka_consumer
 
     def process_message(self):
-        pokemon = self.kafka_consumer.consume_message()  # check
-        self.type_counter(pokemon)
+        try:
+            pokemon = self.kafka_consumer.consume_message()  # check
+            self.type_counter(pokemon)
+        except Exception as e:
+            raise Exception(f"Error processing Pokémon: {e}")
 
     def consume_pokemon_from_topic(self):
         while True:
-            try:
-                self.process_message()
-            except Exception as e:
-                print(f"Error processing Pokémon: {e}")
+            self.process_message()
+
 
     def type_counter(self, pokemon):
         data = self.file_handler.read_file()

@@ -28,32 +28,30 @@ class KafkaConsumer:
         consumer.subscribe([self.topic_name])
 
     def consume_message(self):
-        try:
-            while True:
-                message = consumer.poll(timeout=10.0)  # Timeout de 10 segundos
-                if message is not None:
-                    message_value = message.value()
 
-                    if isinstance(message_value, bytes):
-                        message_value = message_value.decode("utf-8")
+        while True:
+            message = consumer.poll(timeout=10.0)  # Timeout de 10 segundos
+            if message is not None:
+                message_value = message.value()
 
-                    message_dict = json.loads(message_value)
+                if isinstance(message_value, bytes):
+                    message_value = message_value.decode("utf-8")
 
-                    return Pokemon.model_validate(message_dict)
+                message_dict = json.loads(message_value)
 
-                if message is None:
+                return Pokemon.model_validate(message_dict)
+
+            if message is None:
+                continue
+
+            if message.error():
+                if message.error().code() == KafkaError._PARTITION_EOF:
                     continue
-
-                if message.error():
-                    if message.error().code() == KafkaError._PARTITION_EOF:
-                        continue
-                    else:
-                        raise KafkaException(message.error())
                 else:
-                    print(f"Mensagem recebida: {message.value().decode('utf-8')}")
+                    raise KafkaException(message.error())
+            else:
+                print(f"Mensagem recebida: {message.value().decode('utf-8')}")
 
-        except KeyboardInterrupt:
-            print("Consumo interrompido.")
 
-        # finally:  ## handle
-        #     consumer.close()
+    def close_consumer(self):
+        consumer.close()

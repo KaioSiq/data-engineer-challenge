@@ -2,9 +2,11 @@ import requests
 from entities.pokemon import Pokemon
 
 
+BASE_URL = "https://pokeapi.co/api/v2/pokemon/"
+
 class PokeApiClient:
     def __init__(self):
-        self.poke_api_url = "https://pokeapi.co/api/v2/pokemon/"  # constante
+        self.poke_api_url = BASE_URL
 
     def get_pokemon_by_id(self, id: int) -> Pokemon:
         try:
