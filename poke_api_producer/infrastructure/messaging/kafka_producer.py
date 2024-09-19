@@ -22,6 +22,6 @@ class KafkaProducer:
     def send_message(self, message):
         producer.produce(
             self.topic_name, message, callback=message_report
-        )  # checar documentacao
-        print(f"Message sent: {message}\n Topic: {self.topic_name}")
+        )
+        print(f"Publishing to: {self.topic_name}\nMessage sent: {message}", flush=True)
         producer.flush()

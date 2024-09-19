@@ -17,8 +17,8 @@ class Controller:
         pokemon_id = self.get_random_id()
         pokemon = self.poke_api_client.get_pokemon_by_id(pokemon_id)
         self.kafka_producer.send_message(json.dumps(pokemon.model_dump()))
-
+        
     def run_pokemon_fetcher(self):
-        while True:  # keyboard interrupt
+        while True: 
             self.fetch_and_send_pokemon()
             time.sleep(MINUTE)
